@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title>decitectural</title>
+	<meta name="description" content="Convert decimal measurements to architectural notation. Convert decimal representations of length to architectural, feet-and-inches notation." />
+	<meta name="keywords" content="convert, decimal, architectural, metric, imperial, measurement, length, foot, feet, inch, inches" />
+	<meta name="author" content="Anton Dekom (adekom.net)" />
+	<meta name="robots" content="index, follow" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script type="text/javascript" src="javascript/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="javascript/main.js"></script>
+	<script type="text/javascript" src="javascript/decimal.js"></script>
+	<script type="text/javascript" src="javascript/architectural.js"></script>
+	<script type="text/javascript" src="//use.typekit.net/xyt6wyv.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="text/javascript">
+	
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-17611195-2']);
+	_gaq.push(['_trackPageview']);
+	
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	
+	</script>
+</head>
+<body>
+	
+	<!--
+	
+	website design by Anton Dekom
+	adekom.net
+	
+	-->
+	
+	<div id="name">
+		<h1>decitectural</h1>
+	</div>
+	<div id="copyright">copyright 2012 anton dekom</div>
+	<form>
+		<div id="decimal" class="main">
+			<input type="text" name="decimalValue" class="decimalValue" placeholder="0.0" />
+			<div>
+				<h3>decimal</h3>
+				<ul style="display: none">
+					<li>&nbsp;</li>
+					<li><button type="button" value="1" class="decimalUnits selected">inches</button></li>
+					<li><button type="button" value="12" class="decimalUnits">feet</button></li>
+					<li>&nbsp;</li>
+					<li><button type="button" value="0" class="decimalAccuracy">0</button></li>
+					<li><button type="button" value="1" class="decimalAccuracy">0.0</button></li>
+					<li><button type="button" value="2" class="decimalAccuracy">0.00</button></li>
+					<li><button type="button" value="3" class="decimalAccuracy">0.000</button></li>
+					<li><button type="button" value="4" class="decimalAccuracy selected">0.0000</button></li>
+					<li><button type="button" value="5" class="decimalAccuracy">0.00000</button></li>
+					<li><button type="button" value="6" class="decimalAccuracy">0.000000</button></li>
+					<li><button type="button" value="7" class="decimalAccuracy">0.0000000</button></li>
+					<li><button type="button" value="8" class="decimalAccuracy">0.00000000</button></li>
+				</ul>
+			</div>
+		</div>
+		<div id="architectural" class="main">
+			<input type="text" name="architecturalValue" class="architecturalValue" placeholder="0&#39; 0&#34;" />
+			<div>
+				<h3>architectural</h3>
+				<ul style="display: none">
+					<li>&nbsp;</li>
+					<li><button type="button" value="1" class="architecturalAccuracy">0' 0"</button></li>
+					<li><button type="button" value="2" class="architecturalAccuracy">0' 0 1/2"</button></li>
+					<li><button type="button" value="4" class="architecturalAccuracy">0' 0 1/4"</button></li>
+					<li><button type="button" value="8" class="architecturalAccuracy">0' 0 1/8"</button></li>
+					<li><button type="button" value="16" class="architecturalAccuracy selected">0' 0 1/16"</button></li>
+					<li><button type="button" value="32" class="architecturalAccuracy">0' 0 1/32"</button></li>
+					<li><button type="button" value="64" class="architecturalAccuracy">0' 0 1/64"</button></li>
+					<li><button type="button" value="128" class="architecturalAccuracy">0' 0 1/128"</button></li>
+					<li><button type="button" value="256" class="architecturalAccuracy">0' 0 1/256"</button></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

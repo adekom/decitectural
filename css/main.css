@@ -1,0 +1,134 @@
+html,
+body
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#name
+{
+	float: left;
+	margin: 10px;
+}
+
+h1
+{
+	padding: 0px;
+	margin: 0px;
+	color: #777;
+	font: 10pt "nimbus-sans";
+}
+
+#copyright
+{
+	float: right;
+	margin: 10px;
+	color: #eee;
+	font: 10pt "nimbus-sans";
+}
+
+form
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.main
+{
+	height: 100%;
+	width: 50%;
+	position: absolute;
+}
+
+#architectural
+{
+	left: 50%;
+}
+
+input
+{
+	width: 100%;
+	height: 70px;
+	position: absolute;
+	margin-top: -35px;
+	top: 50%;
+	border: none;
+	font: bold 40pt "nimbus-sans";
+	outline: none;
+	color: #555;
+	text-align: center;
+}
+
+input::-webkit-input-placeholder
+{
+	color: #ddd;
+}
+
+input:-moz-placeholder {
+	color: #ddd;
+}
+
+input:-ms-input-placeholder {
+	color: #ddd;
+}
+
+.main > div
+{
+	position: absolute;
+	bottom: 0px;
+	background: #444;
+	width: 200px;
+	padding: 10px 25px 10px 25px;
+}
+
+#decimal > div
+{
+	left: 50px;
+}
+
+#architectural > div
+{
+	right: 50px;
+}
+
+h3
+{
+	margin: 0px;
+	padding: 0px;
+	color: #fff;
+	font: 10pt "nimbus-sans";
+}
+
+ul
+{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+li
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+button
+{
+	margin: 0px;
+	padding: 0px;
+	background: none;
+	border: none;
+	color: #666;
+	font: 10pt "nimbus-sans";
+}
+
+button:hover
+{
+	color: #00aeef;
+	cursor: pointer;
+}
+
+.selected
+{
+	color: #bbb;
+}
