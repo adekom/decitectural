@@ -5,19 +5,16 @@ $(document).on(
 	{
 		clearDefault($(this));
 	},
-	keypress: function(event)
+	keydown: function(event)
 	{
 		
-		var acceptableKeyCodes = [32, 34, 39, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58];
+		var acceptableKeyCodes = [8, 13, 32, 34, 39, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 189, 191, 222];
 		var actualKeyCode = event.which;
 		
-		if(acceptableKeyCodes.indexOf(actualKeyCode) === -1)
+		if($.inArray(actualKeyCode, acceptableKeyCodes) === -1)
 		{
-			
 			window.validKeystroke = false;
-			
 			return false;
-			
 		}
 		else
 		{
@@ -30,7 +27,16 @@ $(document).on(
 		
 		if(window.validKeystroke === true)
 		{
-			checkDecimalize();
+			
+			if(checkDecimalize())
+			{
+				
+				_gaq.push(['_trackEvent', 'decimalize', 'value']);
+				
+				decimalize();
+				
+			}
+			
 		}
 		
 	}
@@ -45,7 +51,15 @@ $(document).on(
 	{
 		
 		changeSelected($(this));
-		checkDecimalize();
+		
+		if(checkDecimalize())
+		{
+			
+			_gaq.push(['_trackEvent', 'decimalize', 'accuracy']);
+			
+			decimalize();
+			
+		}
 		
 	}
 	
@@ -61,15 +75,17 @@ var checkDecimalize = function()
 	
 	if(value !== "" && match !== null)
 	{
-		decimalize();
+		return true;
 	}
 	else if(value !== "")
 	{
 		$(".decimalValue").val("...");
+		return false;
 	}
 	else
 	{
 		$(".decimalValue").val();
+		return false;
 	}
 }
 
@@ -84,6 +100,7 @@ var decimalize = function()
 	var decimalAccuracy = $(".decimalAccuracy.selected").val();
 	
 	
+	// FEET
 	var feet = architecturalValue.match(/^([0-9]+)\'[-\s]*/);
 	
 	if(feet !== null)
@@ -91,6 +108,8 @@ var decimalize = function()
 		decimalValue += parseInt(feet[1]) * 12;
 	}
 	
+	
+	// INCHES
 	var inches = architecturalValue.match(/([-\s\']+([0-9]+)|^([0-9]+))[-\s\"]+/);
 	
 	if(inches !== null)
@@ -107,6 +126,8 @@ var decimalize = function()
 		
 	}
 	
+	
+	// FRACTION
 	var fraction = architecturalValue.match(/([-\s\']+([0-9]+\/[0-9]+)|(^[0-9]+\/[0-9]+))\"/);
 	
 	if(fraction !== null)
@@ -124,10 +145,13 @@ var decimalize = function()
 	}
 	
 	decimalValue = decimalValue / decimalUnits;
-	
 	decimalValue = roundNumber(decimalValue, decimalAccuracy);
 	
+	window.lastAction = "decimalize";
+	
+	// RETURN
 	$(".decimalValue").val(decimalValue);
+	$(".decimalValue").css({"color": "#00aeef"}).delay(400).animate({"color": "#666"}, 1400);
 	
 }
 

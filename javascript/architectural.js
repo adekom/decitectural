@@ -5,19 +5,16 @@ $(document).on(
 	{
 		clearDefault($(this));
 	},
-	keypress: function(event)
+	keydown: function(event)
 	{
 		
-		var acceptableKeyCodes = [46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58];
+		var acceptableKeyCodes = [8, 13, 46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 190];
 		var actualKeyCode = event.which;
 		
-		if(acceptableKeyCodes.indexOf(actualKeyCode) === -1)
+		if($.inArray(actualKeyCode, acceptableKeyCodes) === -1)
 		{
-			
 			window.validKeystroke = false;
-			
 			return false;
-			
 		}
 		else
 		{
@@ -30,7 +27,16 @@ $(document).on(
 		
 		if(window.validKeystroke === true)
 		{
-			checkArchitecturalize();
+			
+			if(checkArchitecturalize())
+			{
+				
+				_gaq.push(['_trackEvent', 'architecturalize', 'value']);
+				
+				architecturalize();
+				
+			}
+			
 		}
 		
 	}
@@ -45,7 +51,15 @@ $(document).on(
 	{
 		
 		changeSelected($(this));
-		checkArchitecturalize();
+		
+		if(checkArchitecturalize())
+		{
+			
+			_gaq.push(['_trackEvent', 'architecturalize', 'accuracy']);
+			
+			architecturalize();
+			
+		}
 		
 	}
 	
@@ -59,7 +73,33 @@ $(document).on(
 	{
 		
 		changeSelected($(this));
-		checkArchitecturalize();
+		
+		if(window.lastAction === "architecturalize")
+		{
+			
+			if(checkArchitecturalize())
+			{
+				
+				_gaq.push(['_trackEvent', 'architecturalize', 'units']);
+				
+				architecturalize();
+				
+			}
+			
+		}
+		else if(window.lastAction === "decimalize")
+		{
+			
+			if(checkDecimalize())
+			{
+				
+				_gaq.push(['_trackEvent', 'architecturalize', 'units']);
+				
+				decimalize();
+				
+			}
+			
+		}
 		
 	}
 	
@@ -73,15 +113,17 @@ var checkArchitecturalize = function()
 	
 	if(value !== "" && isNumber(value))
 	{
-		architecturalize();
+		return true;
 	}
 	else if(value !== "")
 	{
 		$(".architecturalValue").val("...");
+		return false;
 	}
 	else
 	{
 		$(".architecturalValue").val();
+		return false;
 	}
 }
 
@@ -143,8 +185,12 @@ var architecturalize = function()
 	}
 	
 	
+	window.lastAction = "architecturalize";
+	
 	// RETURN
 	$(".architecturalValue").val(architecturalValue);
+	$(".architecturalValue").stop();
+	$(".architecturalValue").css({"color": "#00aeef"}).delay(400).animate({"color": "#666"}, 1400);
 	
 }
 
