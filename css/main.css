@@ -181,3 +181,25 @@ h4
 	font: .75em "mic-32-new-web", "Helvetica", "Arial";
 	line-height: 2em;
 }
+
+.inputBubble
+{
+	z-index: -1;
+	position: absolute;
+	margin-top: 7em;
+	margin-left: 9em;
+	background: #00aeef;
+}
+
+.inputBubble > .bubble
+{
+	padding: 10px;
+	font: .75em "mic-32-new-web", "Helvetica", "Arial";
+	color: #fff;
+}
+
+.inputBubble > .hook
+{
+	height: 10px;
+	background: url("/images/inputBubble.png");
+}

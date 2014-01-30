@@ -7,11 +7,13 @@
 	<meta name="robots" content="index, follow" />
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css" href="/css/main.css" />
-	<script type="text/javascript" src="/javascript/jquery-1.8.2.min.js"></script>
+	<script typekit="text/javascript" src="/javascript/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="/javascript/jquery-ui-1.9.0.custom.min.js"></script>
 	<script type="text/javascript" src="/javascript/main.js"></script>
+	<script type="text/javascript" src="/javascript/customFunctions.js"></script>
 	<script type="text/javascript" src="/javascript/decimal.js"></script>
 	<script type="text/javascript" src="/javascript/architectural.js"></script>
+	<script type="text/javascript" src="/javascript/events.js"></script>
 	<script type="text/javascript" src="//use.typekit.net/xyt6wyv.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<script type="text/javascript">
@@ -42,9 +44,17 @@
 		<h2>decimal architectural notation converter</h2>
 		<a href="/about/" class="pageLink">about</a>
 		<a href="http://twitter.com/decitectural" class="externalLink">twitter</a>
+		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XC9TCYBTYZG46" class="externalLink">donate</a>
+		<a href="mailto:contact@decitectural.com" class="externalLink">feedback</a>
 	</div>
-	<div id="copyright">copyright 2012 anton dekom</div>
+	<div id="copyright">copyright 2012 <a href="http://adekom.net">anton dekom</a></div>
 	<form id="home" style="display: none">
+		<div class="inputBubble">
+			<div class="bubble">
+				start typing to begin converting unit notation!
+			</div>
+			<div class="hook"></div>
+		</div>
 		<input type="text" id="decimalValue" name="decimalValue" class="decimalValue" placeholder="decimal" />
 		<ul id="decimalAccuracy">
 			<li>

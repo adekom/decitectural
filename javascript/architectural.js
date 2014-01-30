@@ -1,112 +1,9 @@
-$(document).on(
-{
-	
-	focus: function()
-	{
-		clearDefault($(this));
-	},
-	keydown: function(event)
-	{
-		
-		var acceptableKeyCodes = [8, 13, 46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 190];
-		var actualKeyCode = event.which;
-		
-		if($.inArray(actualKeyCode, acceptableKeyCodes) === -1)
-		{
-			window.validKeystroke = false;
-			return false;
-		}
-		else
-		{
-			window.validKeystroke = true;
-		}
-		
-	},
-	keyup: function()
-	{
-		
-		if(window.validKeystroke === true)
-		{
-			
-			if(checkArchitecturalize())
-			{
-				
-				_gaq.push(['_trackEvent', 'architecturalize', 'value']);
-				
-				architecturalize();
-				
-			}
-			
-		}
-		
-	}
-	
-},
-".decimalValue");
+decitectural.architecturalize = decitectural.architecturalize || {};
 
-$(document).on(
-{
-	
-	click: function()
-	{
-		
-		changeSelected($(this));
-		
-		if(checkArchitecturalize())
-		{
-			
-			_gaq.push(['_trackEvent', 'architecturalize', 'accuracy']);
-			
-			architecturalize();
-			
-		}
-		
-	}
-	
-},
-".architecturalAccuracy");
+decitectural.architecturalize.keypress = [0, 8, 13, 46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 190];
+decitectural.architecturalize.keyup = [8, 13, 46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 190];
 
-$(document).on(
-{
-	
-	click: function()
-	{
-		
-		changeSelected($(this));
-		
-		if(window.lastAction === "architecturalize")
-		{
-			
-			if(checkArchitecturalize())
-			{
-				
-				_gaq.push(['_trackEvent', 'architecturalize', 'units']);
-				
-				architecturalize();
-				
-			}
-			
-		}
-		else if(window.lastAction === "decimalize")
-		{
-			
-			if(checkDecimalize())
-			{
-				
-				_gaq.push(['_trackEvent', 'architecturalize', 'units']);
-				
-				decimalize();
-				
-			}
-			
-		}
-		
-	}
-	
-},
-".decimalUnits");
-
-var checkArchitecturalize = function()
+decitectural.architecturalize.check = function()
 {
 	
 	var value = $(".decimalValue").val();
@@ -127,7 +24,7 @@ var checkArchitecturalize = function()
 	}
 }
 
-var architecturalize = function()
+decitectural.architecturalize.convert = function()
 {
 	
 	var architecturalValue = "";
@@ -136,79 +33,54 @@ var architecturalize = function()
 	var decimalUnits = $(".decimalUnits.selected").val();
 	var decimalValue = $(".decimalValue").val() * decimalUnits;
 	
+	var feet = Math.floor(decimalValue / 12);
+	var inches = Math.floor(decimalValue - (feet * 12));
+	var fraction = Math.floor((decimalValue - (feet * 12) - inches) * architecturalAccuracy);
 	
 	// FEET
-	var feet = Math.floor(decimalValue / 12);
-	
 	if(feet > 0)
 	{
 		
 		architecturalValue += feet + "'";
-		decimalValue -= feet * 12;
+		
+		if(inches > 0 || fraction > 0)
+		{
+			architecturalValue += " ";
+		}
 		
 	}
 	
-	
 	// INCHES
-	var inches = Math.floor(decimalValue);
-	
-	if(feet > 0 && inches > 0)
-	{
-		architecturalValue += " ";
-	}
-	
 	if(inches > 0)
 	{
 		
 		architecturalValue += inches;
-		decimalValue -= inches;
+		
+		if(fraction > 0)
+		{
+			architecturalValue += " ";
+		}
+		else
+		{
+			architecturalValue += "\"";
+		}
 		
 	}
 	
-	
 	// FRACTION
-	var fraction = Math.floor(decimalValue * architecturalAccuracy);
-	
-	if((inches > 0 || feet > 0) && fraction > 0)
-	{
-		architecturalValue += " ";
-	}
-	
 	if(fraction > 0)
 	{
-		architecturalValue += reduceFraction(fraction, architecturalAccuracy);
+		architecturalValue += reduceFraction(fraction, architecturalAccuracy) + "\"";
 	}
 	
-	if(fraction > 0 || inches > 0)
+	if(feet === 0 && inches === 0 && fraction === 0)
 	{
-		architecturalValue += "\"";
+		architecturalValue += "0\"";
 	}
-	
-	
-	window.lastAction = "architecturalize";
 	
 	// RETURN
 	$(".architecturalValue").val(architecturalValue);
 	$(".architecturalValue").stop();
 	$(".architecturalValue").css({"color": "#00aeef"}).delay(400).animate({"color": "#666"}, 1400);
 	
-}
-
-var reduceFraction = function(numerator, denominator)
-{
-	
-	var gcd = greatestCommonDenominator(numerator, denominator);
-	
-	return (numerator / gcd) + "/" + (denominator / gcd);
-	
-}
-
-var greatestCommonDenominator = function(a, b)
-{
-	return b ? greatestCommonDenominator(b, a % b) : Math.abs(a);
-}
-
-var isNumber = function(n)
-{
-	return !isNaN(parseFloat(n)) && isFinite(n);
 }

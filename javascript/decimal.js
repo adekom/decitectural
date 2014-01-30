@@ -1,72 +1,9 @@
-$(document).on(
-{
-	
-	focus: function()
-	{
-		clearDefault($(this));
-	},
-	keydown: function(event)
-	{
-		
-		var acceptableKeyCodes = [8, 13, 32, 34, 39, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 189, 191, 222];
-		var actualKeyCode = event.which;
-		
-		if($.inArray(actualKeyCode, acceptableKeyCodes) === -1)
-		{
-			window.validKeystroke = false;
-			return false;
-		}
-		else
-		{
-			window.validKeystroke = true;
-		}
-		
-	},
-	keyup: function()
-	{
-		
-		if(window.validKeystroke === true)
-		{
-			
-			if(checkDecimalize())
-			{
-				
-				_gaq.push(['_trackEvent', 'decimalize', 'value']);
-				
-				decimalize();
-				
-			}
-			
-		}
-		
-	}
-	
-},
-".architecturalValue");
+decitectural.decimalize = decitectural.decimalize || {};
 
-$(document).on(
-{
-	
-	click: function()
-	{
-		
-		changeSelected($(this));
-		
-		if(checkDecimalize())
-		{
-			
-			_gaq.push(['_trackEvent', 'decimalize', 'accuracy']);
-			
-			decimalize();
-			
-		}
-		
-	}
-	
-},
-".decimalAccuracy");
+decitectural.decimalize.keypress = [0, 8, 13, 32, 34, 39, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 189, 191, 222];
+decitectural.decimalize.keyup = [8, 13, 34, 39, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 189, 191, 222];
 
-var checkDecimalize = function()
+decitectural.decimalize.check = function()
 {
 	
 	var value = $(".architecturalValue").val();
@@ -89,7 +26,7 @@ var checkDecimalize = function()
 	}
 }
 
-var decimalize = function()
+decitectural.decimalize.convert = function()
 {
 	
 	var architecturalValue = $(".architecturalValue").val();
@@ -147,24 +84,8 @@ var decimalize = function()
 	decimalValue = decimalValue / decimalUnits;
 	decimalValue = roundNumber(decimalValue, decimalAccuracy);
 	
-	window.lastAction = "decimalize";
-	
 	// RETURN
 	$(".decimalValue").val(decimalValue);
 	$(".decimalValue").css({"color": "#00aeef"}).delay(400).animate({"color": "#666"}, 1400);
 	
-}
-
-var divideFraction = function(fraction)
-{
-	
-	var bits = fraction.split("/");
-	
-	return parseInt(bits[0], 10) / parseInt(bits[1], 10);
-	
-}
-
-function roundNumber(n, decimalPlaces)
-{
-	return Math.floor(n * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
 }

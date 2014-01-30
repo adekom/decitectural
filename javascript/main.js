@@ -1,3 +1,7 @@
+var decitectural = decitectural || {};
+
+decitectural.current = null;
+
 changePage = function(url)
 {
 	
@@ -49,23 +53,24 @@ changePage = function(url)
 	
 }
 
-var changeSelected = function(element)
+decitectural.GATimer = function(count)
 {
 	
-	var className = element.attr("class");
-	
-	$("." + className).removeClass("selected");
-	element.addClass("selected");
-	
-}
-
-var clearDefault = function(element)
-{
-	
-	if(element.val() === "...")
+	if(count === 0)
 	{
-		$("input").val("");
+		return;
 	}
+	
+	setTimeout(function()
+	{
+		
+		_gaq.push(['_trackEvent', count + '', 'timer']);
+		
+		count--;
+		
+		decitectural.GATimer(count);
+		
+	}, 1000);
 	
 }
 
@@ -98,6 +103,8 @@ $(window).on(
 			}
 			
 		});
+		
+		decitectural.GATimer(10);
 		
 	}
 	
