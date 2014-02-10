@@ -7,7 +7,7 @@ var divideFraction = function(fraction)
 	
 }
 
-function roundNumber(n, decimalPlaces)
+var roundNumber = function(n, decimalPlaces)
 {
 	return Math.floor(n * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
 }
