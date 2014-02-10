@@ -4,6 +4,7 @@ sitemap.xml
 favicon.ico
 
 # OS Generated Files
+.DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
