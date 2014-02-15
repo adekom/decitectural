@@ -22,7 +22,7 @@ a:hover
 {
 	position: absolute;
 	bottom: 0em;
-	width: 34em;
+	width: 40em;
 	margin: .5em;
 }
 
@@ -72,7 +72,7 @@ form
 
 input
 {
-	width: 100%;
+	width: 80%;
 	margin: 0em;
 	padding: 0em 0em 0em 2em;
 	font: bold 4.5em "mic-32-new-web", "Helvetica", "Arial";

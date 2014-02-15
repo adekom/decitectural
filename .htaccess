@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteBase    /
+
+RewriteCond				%{REQUEST_FILENAME}						!-f
+RewriteRule 			.*[^/]$									/$0/						[L,R=301]
+
+RewriteCond				%{REQUEST_FILENAME}						!-f
+RewriteRule				.*/										index.html					[L]
