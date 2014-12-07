@@ -5,7 +5,7 @@ A small library providing utility methods to convert measurements `toDecimal` or
 
 ## Installation
 
-  npm install decitectural --save
+	npm install decitectural --save
 
 ## Usage
 
