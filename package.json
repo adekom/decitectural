@@ -1,7 +1,21 @@
 {
   "name": "decitectural",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "decimal-architectural notation converter",
+  "keywords": [
+    "convert",
+    "converter",
+    "unit converter",
+    "unit conversion",
+    "unit notation",
+    "measurement",
+    "decimal",
+    "architectural",
+    "imperial",
+    "feet",
+    "inches",
+    "fraction"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "make test"

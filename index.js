@@ -10,13 +10,13 @@ module.exports = {
 	
 	toDecimal: function(architectural, units, precision) {
 		if (typeof architectural !== "string" && !(architectural instanceof String))
-			return;
+			return false;
 		if(architectural.match(/^(([0-9]+)\')?([-\s])*((([0-9]+\")([-\s])*|([0-9]*)([-\s]*)([0-9]+)(\/{1})([0-9]+\")))?$/g) === null)
-			return;
+			return false;
 		if(["1", "1/10", "1/100", "1/1000", "1/10000", "1/100000", "1/1000000", "1/10000000"].indexOf(precision) < 0)
-			return;
+			return false;
 		if(["inches", "feet"].indexOf(units) < 0)
-			return;
+			return false;
 		
 		var decimal = 0;
 		
@@ -59,11 +59,11 @@ module.exports = {
 	
 	toArchitectural: function(decimal, units, precision) {
 		if(typeof decimal !== "number" || isNaN(decimal) || !isFinite(decimal))
-			return;
+			return false;
 		if(["inches", "feet"].indexOf(units) < 0)
-			return;
+			return false;
 		if(["1/2", "1/4", "1/8", "1/16", "1/32", "1/64", "1/128", "1/256"].indexOf(precision) < 0)
-			return;
+			return false;
 		
 		var architectural = "";
 		
