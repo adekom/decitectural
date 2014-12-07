@@ -1,7 +1,7 @@
 decitectural
 =========
 
-Decitectural is a small library for converting between decimal and architectural representations of a measurement.
+A small library for converting between decimal and architectural representations of a measurement.
 
 ## Installation
 
