@@ -85,7 +85,7 @@ module.exports = {
 		
 		var fraction = Math.floor((decimal - (feet * 12) - inches) * precision);
 		if(fraction > 0)
-			architectural += architectural.replace("\"", " " + reduceFraction(fraction, precision) + "\"");
+			architectural = architectural.replace("\"", " " + reduceFraction(fraction, precision) + "\"");
 		
 		return architectural;
 	}
