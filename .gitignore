@@ -1,7 +1,4 @@
-# Non-critical website files
-robots.txt
-sitemap.xml
-favicon.ico
+node_modules
 
 # OS Generated Files
 .DS_Store
